@@ -6,6 +6,7 @@ class Gtools{
 	map<int,int> tools_t;
 	int tools_last_random = -1;
 	public:
+	Gtools();
 	bool tools_bool = 0;
 	int tools_int = 0;
 	double tools_double = 0;
@@ -100,6 +101,7 @@ class Gtools{
 		tools_t[tools_x] = 0;
 	}
 	int tget(int tools_x){
+		
 		return tools_t[tools_x];
 	}
 	void tset(int tools_x, int tools_y){
@@ -115,12 +117,10 @@ class Gtools{
 		return tools_ans[tools_x];
 	}
 	int grandom(int toolsa, int toolsb){
-		srand(time(0));
 		tools_last_random = (rand() % (toolsb-toolsa+1)) + toolsa;
 		return tools_last_random;
 	}
 	vector<int> grandomx(int toolsa, int toolsb, int toolsc){
-		srand(time(0));
 		vector<int> tools_v;
 		for (int tools_i = 1; tools_i <= toolsc; tools_i ++){
 			tools_v.push_back((rand() % (toolsb-toolsa+1)) + toolsa);
@@ -128,7 +128,6 @@ class Gtools{
 		return tools_v;
 	}
 	vector<int> unrepeat_grandomx(int toolsa, int toolsb, int toolsc){
-		srand(time(0));
 		vector<int> tools_v;
 		map<int,int> tools_map;
 		if (toolsc > (toolsb - toolsa + 1)) return {-1};
@@ -147,7 +146,6 @@ class Gtools{
 		return tools_last_random;
 	}
 	bool yes_no(void){
-		srand(time(0));
 		return (rand() % 2);
 	}
 	bool is_even(int tools_x){
@@ -160,4 +158,6 @@ class Gtools{
 		cout << "The Gtools class is a versatile utility class that encapsulates many helpful functionalities.\n\nPrivate Members:\nstd::map<int, int> tools_t;: A map used to store the occurrence count of integers.\nint tools_last_random = -1;: Keeps track of the last generated random number.\n\nPublic Members:\nBasic Types:\nThe class includes basic data types like bool, int, double, std::string, and char as member variables. However, it's generally not recommended to expose such basic types directly as public members unless they serve a specific purpose.\n\nMathematical Functions:\nint gcd(int a, int b): Computes the Greatest Common Divisor (GCD) of two integers.\nint lcm(int a, int b): Computes the Least Common Multiple (LCM) of two integers.\nbool is_ps(int tools_x): Checks if a number is a perfect square. The name is_ps might be confusing; a more descriptive name like isPerfectSquare would be better.\nbool is_prime(int tools_x): Checks if a number is a prime.\nlong long fastpowll(long long toola, long long toolb), int fastpowint(int toola, int toolb), int fastpow(int toola, int toolb): These functions compute the power of a number efficiently. However, having multiple versions can be confusing. Ideally, fastpow should be templated or overloaded to handle different types.\n\nFibonacci Sequence:\nstd::vector<int> fib(int tools_x): Returns the first tools_x Fibonacci numbers.\nint fibk(int tools_x): Returns the tools_xth Fibonacci number.\n\nRandom Number Generation:\nint grandom(int toolsa, int toolsb): Generates a random integer between toolsa and toolsb (inclusive).\nstd::vector<int> grandomx(int toolsa, int toolsb, int toolsc): Generates a vector of toolsc random integers between toolsa and toolsb.\nstd::vector<int> unrepeat_grandomx(int toolsa, int toolsb, int toolsc): Generates a vector of toolsc unique random integers between toolsa and toolsb.\nint granlast(void): Returns the last generated random number.\nbool yes_no(void): Randomly returns true or false.\nNote: It's recommended to call srand(time(0)) only once at the start of the program to initialize the random number generator.\n\nOther Utility Functions:\nvoid tpp(void), void tips(std::string tools_s): These functions seem to be related to printing test point information but lack specific implementation details.\nvoid say(std::string tools_x): Outputs a string.\nvoid tmark(int tools_x), void tadd(int tools_x, int tools_y), void tclear(void), void tdelete(int tools_x), int tget(int tools_x), void tset(int tools_x, int tools_y): These functions manipulate the tools_t map.\nbool is_even(int tools_x): Checks if an integer is even." << std::endl;
 	}
 };
-
+Gtools::Gtools(void){
+	srand(time(0));
+}
